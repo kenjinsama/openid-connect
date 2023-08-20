@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "@types/node": "^20.5.1",
+    "gts": "^5.0.0",
+    "typescript": "~5.1.6"
+  },
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "yarn run compile",
+    "pretest": "yarn run compile",
+    "posttest": "yarn run lint"
+  },
+  "dependencies": {
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13"
+  }
+}
