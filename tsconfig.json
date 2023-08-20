@@ -2,7 +2,7 @@
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "target": "ES2020",
-    "types": ["node", "reflect-metadata"],
+    "types": ["node", "reflect-metadata", "jest"],
     "module": "commonjs",
     "outDir": "build",
     "sourceMap": true,
@@ -14,6 +14,5 @@
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts"
   ]
 }
