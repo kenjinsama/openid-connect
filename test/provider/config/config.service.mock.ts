@@ -1,5 +1,5 @@
-import { Config } from '../../../src/provider/config/config.dto';
 import { ConfigService } from '../../../src/provider/config/config.service';
+import { Config } from '../../../src/provider/config/dtos/config.dto';
 
 jest.mock('../../../src/provider/config/config.service');
 

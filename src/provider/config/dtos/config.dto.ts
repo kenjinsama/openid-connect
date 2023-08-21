@@ -4,9 +4,10 @@
 import { Type } from 'class-transformer';
 import { IsUrl, ValidateNested } from 'class-validator';
 
-import { Dto } from '../../dto';
-import { Plain } from '../../plain.type';
-import { ClientDto } from '../clients/service-provider.dto';
+import { Dto } from '../../../dto';
+import { Plain } from '../../../plain.type';
+
+import { ClientDto } from './service-provider.dto';
 
 export class ConfigDto extends Dto {
   @IsUrl()

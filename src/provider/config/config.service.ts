@@ -1,6 +1,6 @@
 import { plainToClass } from 'class-transformer';
 
-import { Config, ConfigDto } from './config.dto';
+import { Config, ConfigDto } from './dtos/config.dto';
 
 export class ConfigService {
   private readonly config: ConfigDto;

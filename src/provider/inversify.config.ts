@@ -3,8 +3,8 @@
 // Declarative file
 import { Container } from 'inversify';
 
-import { Config } from './config/config.dto';
 import { ConfigService } from './config/config.service';
+import { Config } from './config/dtos/config.dto';
 import { ProviderService } from './provider.service';
 import { TYPES } from './types';
 
