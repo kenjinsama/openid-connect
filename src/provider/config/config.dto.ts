@@ -1,13 +1,15 @@
-import { Type } from 'class-transformer';
-import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+/* istanbul ignore file */
 
+// Declarative file
+import { Type } from 'class-transformer';
+import { IsUrl, ValidateNested } from 'class-validator';
+
+import { Dto } from '../../dto';
+import { Plain } from '../../plain.type';
 import { ClientDto } from '../clients/service-provider.dto';
-import { Dto } from '../dto';
-import { Plain } from '../plain.type';
 
 export class ConfigDto extends Dto {
-  @IsString()
-  @IsNotEmpty()
+  @IsUrl()
   readonly issuer: string;
 
   @ValidateNested()

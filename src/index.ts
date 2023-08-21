@@ -1,26 +1,20 @@
-console.log("Try npm run lint/fix!");
+import 'reflect-metadata';
 
-const longString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
+import { Config as ProviderConfig } from './provider/config/config.dto';
+import { init } from './provider/inversify.config';
+import { ProviderService } from './provider/provider.service';
+import { TYPES } from './provider/types';
 
-const trailing = 'Semicolon'
+export class OpenIdConnect {
+  static async createProvider(
+    config: ProviderConfig,
+  ): Promise<ProviderService> {
+    const container = await init(config);
 
-			const why={am:'I tabbed?'};
-
-const iWish = "I didn't have a trailing space..."; 
-
-const sicilian = true;;
-
-const vizzini = (!!sicilian) ? !!!sicilian : sicilian;
-
-const re = /foo   bar/;
-
-export function doSomeStuff(withThis: string, andThat: string, andThose: string[]) {
-    //function on one line
-    if(!Boolean(andThose.length)) {return false;}
-    console.log(withThis);
-    console.log(andThat);
-    console.dir(andThose);
-    console.log(longString, trailing, why, iWish, vizzini, re);
-    return;
+    const provider = await container.get<ProviderService>(
+      TYPES.ProviderService,
+    );
+    return provider;
+  }
 }
 // TODO: more examples

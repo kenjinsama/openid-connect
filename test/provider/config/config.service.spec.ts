@@ -1,15 +1,12 @@
 import * as ClassTransformer from 'class-transformer';
 
-import { ConfigDto } from '../../src/config/config.dto';
-import { ConfigService } from '../../src/config/config.service';
+import { ConfigDto } from '../../../src/provider/config/config.dto';
+import { ConfigService } from '../../../src/provider/config/config.service';
+import { configPlainMock } from './config.service.mock';
 
 describe('ConfigService', () => {
   let service: ConfigService;
 
-  const configPlainMock = {
-    issuer: 'https://issuer',
-    clients: [],
-  };
   const configMock = {
     ...configPlainMock,
     validate: jest.fn(),
@@ -17,7 +14,7 @@ describe('ConfigService', () => {
   };
 
   beforeEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
 
     jest.spyOn(ClassTransformer, 'plainToClass').mockReturnValue(configMock);
 
