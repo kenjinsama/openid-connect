@@ -3,7 +3,7 @@
 // Declarative file
 import { IsBoolean } from 'class-validator';
 
-import { Dto } from '../../../dto';
+import { Dto } from '../../../utils/dto';
 
 export class FeaturesDto extends Dto {
   @IsBoolean()

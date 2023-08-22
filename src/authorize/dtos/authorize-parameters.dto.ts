@@ -4,9 +4,9 @@
 import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
-import { Dto } from '../../dto';
-import { Plain } from '../../plain.type';
+import { Dto } from '../../utils/dto';
 import { Split } from '../../utils/transformers/split.transformer';
+import { Plain } from '../../utils/types/plain.type';
 import { ReplaceSubset } from '../../utils/types/replace-subset.type';
 
 export class AuthorizeParametersDto extends Dto {

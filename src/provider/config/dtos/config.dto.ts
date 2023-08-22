@@ -4,8 +4,8 @@
 import { Type } from 'class-transformer';
 import { IsUrl, ValidateNested } from 'class-validator';
 
-import { Dto } from '../../../dto';
-import { Plain } from '../../../plain.type';
+import { Dto } from '../../../utils/dto';
+import { Plain } from '../../../utils/types/plain.type';
 import { RefParent } from '../../../utils/validate-if-parent';
 import { EndpointDto } from './endpoints.dto';
 import { FeaturesDto } from './features.dto';

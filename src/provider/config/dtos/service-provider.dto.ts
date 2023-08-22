@@ -3,8 +3,8 @@
 // Declarative file
 import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
-import { Dto } from '../../../dto';
-import { Plain } from '../../../plain.type';
+import { Dto } from '../../../utils/dto';
+import { Plain } from '../../../utils/types/plain.type';
 
 export class ClientDto extends Dto {
   @IsString()

@@ -1,6 +1,6 @@
 import { instanceToPlain } from 'class-transformer';
 import { validateOrReject } from 'class-validator';
-import { Plain } from './plain.type';
+import { Plain } from './types/plain.type';
 
 export class Dto {
   async validate() {

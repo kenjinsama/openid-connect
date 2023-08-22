@@ -1,6 +1,6 @@
 import * as ClassTransformer from 'class-transformer';
 import * as ClassValidator from 'class-validator';
-import { Dto } from '../src/dto';
+import { Dto } from '../../src/utils/dto';
 
 describe('Dto', () => {
   let service: Dto;

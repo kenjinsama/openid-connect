@@ -3,7 +3,7 @@
 // Declarative file
 import { IsUrl, ValidateIf } from 'class-validator';
 
-import { Dto } from '../../../dto';
+import { Dto } from '../../../utils/dto';
 import { Parent } from '../../../utils/validate-if-parent';
 import { ConfigDto } from './config.dto';
 
