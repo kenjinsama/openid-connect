@@ -8,12 +8,20 @@ import { Dto } from '../../utils/dto';
 import { Split } from '../../utils/transformers/split.transformer';
 import { Plain } from '../../utils/types/plain.type';
 import { ReplaceSubset } from '../../utils/types/replace-subset.type';
+import { ContainsAtLeastValues } from '../../utils/validators/contains-at-least-values.validator';
+import { ContainsOnlyValuesIn } from '../../utils/validators/contains-only-values-in.validator';
+import {
+  RESPONSE_TYPE_ALLOWED_VALUES,
+  SCOPE_AT_LEAST_CONTAINS,
+  VALUES_SEPARATOR,
+} from '../constants';
 
 export class AuthorizeParametersDto extends Dto {
   @Expose()
-  @IsNotEmpty({ each: true })
-  @IsString({ each: true })
-  @Transform(Split(/[ ]+/), { toPlainOnly: true })
+  @Transform(Split(VALUES_SEPARATOR), { toPlainOnly: true })
+  @ContainsOnlyValuesIn(RESPONSE_TYPE_ALLOWED_VALUES, {
+    separator: VALUES_SEPARATOR,
+  })
   readonly response_type: string;
 
   @Expose()
@@ -26,10 +34,10 @@ export class AuthorizeParametersDto extends Dto {
   readonly redirect_uri: string;
 
   @Expose()
-  @IsNotEmpty({ each: true })
-  @IsString({ each: true })
-  @Transform(Split(/[ ]+/), { toPlainOnly: true })
-  @IsString()
+  @Transform(Split(VALUES_SEPARATOR), { toPlainOnly: true })
+  @ContainsAtLeastValues(SCOPE_AT_LEAST_CONTAINS, {
+    separator: VALUES_SEPARATOR,
+  })
   readonly scope: string;
 
   // @IsOptional()
