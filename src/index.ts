@@ -10,6 +10,5 @@ export async function createProvider(
 ): Promise<ProviderService> {
   const container = await init(config);
 
-  const provider = await container.get<ProviderService>(TYPES.ProviderService);
-  return provider;
+  return container.getAsync<ProviderService>(TYPES.ProviderService);
 }

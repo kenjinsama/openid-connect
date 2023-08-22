@@ -17,7 +17,7 @@ export class Dto {
     }
   }
 
-  toPlainObject(): Plain<this> {
-    return instanceToPlain(this) as Plain<this>;
+  toPlainObject<T = Plain<this>>(): T {
+    return instanceToPlain(this) as T;
   }
 }

@@ -11,7 +11,7 @@ jest.mock('../src/provider/inversify.config');
 
 describe('OpenIdConnect', () => {
   const containerMock = {
-    get: jest.fn(),
+    getAsync: jest.fn(),
   };
 
   beforeEach(() => {
@@ -23,7 +23,9 @@ describe('OpenIdConnect', () => {
       jest
         .mocked(init)
         .mockResolvedValue(containerMock as unknown as Container);
-      jest.mocked(containerMock.get).mockResolvedValue(providerServiceMock);
+      jest
+        .mocked(containerMock.getAsync)
+        .mockResolvedValue(providerServiceMock);
     });
 
     it('should get the provider service from the container', async () => {
@@ -31,8 +33,10 @@ describe('OpenIdConnect', () => {
       await createProvider(configPlainMock);
 
       // Then
-      expect(containerMock.get).toHaveBeenCalledTimes(1);
-      expect(containerMock.get).toHaveBeenCalledWith(TYPES.ProviderService);
+      expect(containerMock.getAsync).toHaveBeenCalledTimes(1);
+      expect(containerMock.getAsync).toHaveBeenCalledWith(
+        TYPES.ProviderService,
+      );
     });
 
     it('should return the provider service', async () => {
