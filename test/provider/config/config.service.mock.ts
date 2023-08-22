@@ -13,6 +13,14 @@ export const configPlainMock: Config = {
       post_logout_redirect_uris: ['https://example.com'],
     },
   ],
+  endpoints: {
+    authorize: '/authorize',
+    token: '/token',
+    userinfo: '/userinfo',
+  },
+  features: {
+    userinfo: true,
+  },
 };
 
 export const configServiceMock = new ConfigService(
