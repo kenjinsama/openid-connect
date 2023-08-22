@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 // Declarative file
-import { Transform } from 'class-transformer';
+import { Expose, Transform } from 'class-transformer';
 import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
 import { Dto } from '../../utils/dto';
@@ -10,18 +10,22 @@ import { Plain } from '../../utils/types/plain.type';
 import { ReplaceSubset } from '../../utils/types/replace-subset.type';
 
 export class AuthorizeParametersDto extends Dto {
+  @Expose()
   @IsNotEmpty({ each: true })
   @IsString({ each: true })
   @Transform(Split(/[ ]+/), { toPlainOnly: true })
   readonly response_type: string;
 
+  @Expose()
   @IsNotEmpty()
   @IsString()
   readonly client_id: string;
 
+  @Expose()
   @IsUrl()
   readonly redirect_uri: string;
 
+  @Expose()
   @IsNotEmpty({ each: true })
   @IsString({ each: true })
   @Transform(Split(/[ ]+/), { toPlainOnly: true })

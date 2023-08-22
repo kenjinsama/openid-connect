@@ -25,6 +25,9 @@ describe('ConfigService', () => {
     expect(ClassTransformer.plainToClass).toHaveBeenCalledWith(
       ConfigDto,
       configMock,
+      {
+        excludeExtraneousValues: true,
+      },
     );
   });
 

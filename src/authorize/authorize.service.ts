@@ -15,7 +15,9 @@ export class AuthorizeService {
   async validateRequest(request: AuthorizeParameters): Promise<void> {
     console.debug('Validating request:', request);
 
-    const requestDto = plainToClass(AuthorizeParametersDto, request);
+    const requestDto = plainToClass(AuthorizeParametersDto, request, {
+      excludeExtraneousValues: true,
+    });
 
     await requestDto.validate();
 

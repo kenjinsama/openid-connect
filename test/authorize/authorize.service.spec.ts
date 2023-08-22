@@ -37,6 +37,9 @@ describe('AuthorizeService', () => {
       expect(ClassTransformer.plainToClass).toHaveBeenCalledWith(
         AuthorizeParametersDto,
         authorizeParametersMock,
+        {
+          excludeExtraneousValues: true,
+        },
       );
     });
 

@@ -6,7 +6,9 @@ export class ConfigService {
   private readonly config: ConfigDto;
 
   constructor(config: Config) {
-    this.config = plainToClass(ConfigDto, config);
+    this.config = plainToClass(ConfigDto, config, {
+      excludeExtraneousValues: true,
+    });
   }
 
   public async setup() {
