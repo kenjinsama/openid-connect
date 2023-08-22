@@ -4,7 +4,7 @@ import { createProvider } from '../src/index';
 import { init } from '../src/provider/inversify.config';
 import { TYPES } from '../src/provider/types';
 
-import { configPlainMock } from './provider/config/config.service.mock';
+import { configMock } from './provider/config/config.service.mock';
 import { providerServiceMock } from './provider/provider.service.mock';
 
 jest.mock('../src/provider/inversify.config');
@@ -30,7 +30,7 @@ describe('OpenIdConnect', () => {
 
     it('should get the provider service from the container', async () => {
       // When
-      await createProvider(configPlainMock);
+      await createProvider(configMock);
 
       // Then
       expect(containerMock.getAsync).toHaveBeenCalledTimes(1);
@@ -41,7 +41,7 @@ describe('OpenIdConnect', () => {
 
     it('should return the provider service', async () => {
       // When
-      const result = await createProvider(configPlainMock);
+      const result = await createProvider(configMock);
 
       // Then
       expect(result).toStrictEqual(providerServiceMock);

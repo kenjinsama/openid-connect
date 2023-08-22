@@ -1,8 +1,5 @@
 import { ProviderService } from '../../src/provider/provider.service';
-import {
-  configPlainMock,
-  configServiceMock,
-} from './config/config.service.mock';
+import { configMock, configServiceMock } from './config/config.service.mock';
 
 describe('ProviderService', () => {
   let service: ProviderService;
@@ -19,7 +16,7 @@ describe('ProviderService', () => {
 
   describe('setup', () => {
     beforeEach(() => {
-      configServiceMock.get.mockReturnValue(configPlainMock.issuer);
+      configServiceMock.get.mockReturnValue(configMock.issuer);
     });
 
     it('should find the issuer', async () => {

@@ -3,7 +3,7 @@ import { Config } from '../../../src/provider/config/dtos/config.dto';
 
 jest.mock('../../../src/provider/config/config.service');
 
-export const configPlainMock: Config = {
+export const configMock: Config = {
   issuer: 'https://issuer',
   clients: [
     {
@@ -23,6 +23,12 @@ export const configPlainMock: Config = {
   },
 };
 
+export const configDtoMock = {
+  ...configMock,
+  validate: jest.fn(),
+  toPlainObject: jest.fn(),
+};
+
 export const configServiceMock = new ConfigService(
-  configPlainMock,
+  configMock,
 ) as jest.Mocked<ConfigService>;
