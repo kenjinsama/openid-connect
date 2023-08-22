@@ -5,12 +5,8 @@ import { Dto } from '../src/dto';
 describe('Dto', () => {
   let service: Dto;
 
-  beforeAll(() => {
-    jest.resetAllMocks();
-  });
-
   beforeEach(() => {
-    jest.clearAllMocks();
+    jest.restoreAllMocks();
 
     service = new Dto();
   });
@@ -20,7 +16,7 @@ describe('Dto', () => {
   });
 
   describe('validate', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       jest
         .spyOn(ClassValidator, 'validateOrReject')
         .mockResolvedValue(undefined);
@@ -67,7 +63,7 @@ describe('Dto', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const plainObjectMock = { foo: 'bar' } as any;
 
-    beforeAll(() => {
+    beforeEach(() => {
       jest
         .spyOn(ClassTransformer, 'instanceToPlain')
         .mockReturnValue(plainObjectMock);

@@ -14,16 +14,12 @@ describe('OpenIdConnect', () => {
     get: jest.fn(),
   };
 
-  beforeAll(() => {
-    jest.resetAllMocks();
-  });
-
   beforeEach(() => {
-    jest.clearAllMocks();
+    jest.restoreAllMocks();
   });
 
   describe('createProvider', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       jest
         .mocked(init)
         .mockResolvedValue(containerMock as unknown as Container);

@@ -13,14 +13,10 @@ describe('ConfigService', () => {
     toPlainObject: jest.fn(),
   };
 
-  beforeAll(() => {
-    jest.resetAllMocks();
+  beforeEach(() => {
+    jest.restoreAllMocks();
 
     jest.spyOn(ClassTransformer, 'plainToClass').mockReturnValue(configMock);
-  });
-
-  beforeEach(() => {
-    jest.clearAllMocks();
 
     service = new ConfigService(configMock);
   });
@@ -50,7 +46,7 @@ describe('ConfigService', () => {
   });
 
   describe('get', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       configMock.toPlainObject.mockReturnValue(configPlainMock);
     });
 
