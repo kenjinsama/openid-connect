@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 
-import { Config as ProviderConfig } from './provider/config/dtos/config.dto';
-import { init } from './provider/inversify.config';
-import { ProviderService } from './provider/provider.service';
-import { TYPES } from './provider/types';
+import { Config as ProviderConfig } from './config/dtos/config.dto';
+import { init } from './inversify.config';
+import { ProviderService } from './provider.service';
+import { TYPES } from './types';
 
 export async function createProvider(
   config: ProviderConfig,

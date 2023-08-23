@@ -5,6 +5,9 @@
   "author": "Stephane Herman",
   "private": true,
   "license": "UNLICENSED",
+  "exports": {
+    "./provider": "./build/provider.js"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@types/node": "^20.5.1",
