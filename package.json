@@ -1,4 +1,10 @@
 {
+  "name": "openid-connect",
+  "version": "0.0.1",
+  "description": "Implementations for OpenID Connect providers and clients",
+  "author": "Stephane Herman",
+  "private": true,
+  "license": "UNLICENSED",
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@types/node": "^20.5.1",
