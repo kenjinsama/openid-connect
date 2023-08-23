@@ -6,6 +6,7 @@ import { AuthorizeParametersDto } from '../../src/authorize/dtos/authorize-param
 import {
   authorizeParametersDto,
   authorizeParametersMock,
+  authorizeParametersTMock,
 } from './authorize.service.mock';
 
 describe('AuthorizeService', () => {
@@ -26,6 +27,10 @@ describe('AuthorizeService', () => {
       jest
         .spyOn(ClassTransformer, 'plainToClass')
         .mockReturnValue(authorizeParametersDto);
+
+      jest
+        .mocked(authorizeParametersDto.toPlainObject)
+        .mockReturnValue(authorizeParametersTMock);
     });
 
     it('should instantiate the DTO', async () => {
@@ -50,6 +55,14 @@ describe('AuthorizeService', () => {
       // Then
       expect(authorizeParametersDto.validate).toHaveBeenCalledTimes(1);
       expect(authorizeParametersDto.validate).toHaveBeenCalledWith();
+    });
+
+    it('should return the parsed request', async () => {
+      // When
+      const result = await service.validateRequest(authorizeParametersMock);
+
+      // Then
+      expect(result).toStrictEqual(authorizeParametersTMock);
     });
   });
 });

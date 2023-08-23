@@ -2,14 +2,12 @@ import { inject, injectable, postConstruct } from 'inversify';
 
 import { AuthorizeService } from '../authorize/authorize.service';
 
-import { AuthorizeParameters } from '../authorize/dtos/authorize-parameters.dto';
+import {
+  AuthorizeParameters,
+  AuthorizeParametersT,
+} from '../authorize/dtos/authorize-parameters.dto';
 import { ConfigService } from './config/config.service';
 import { TYPES } from './types';
-
-export interface ProviderService {
-  setup(): Promise<void>;
-  authorizeRequest(request: AuthorizeParameters): Promise<void>;
-}
 
 @injectable()
 export class ProviderService {
@@ -26,7 +24,9 @@ export class ProviderService {
     console.debug('Initializing issuer:', issuer);
   }
 
-  async authorizeRequest(request: AuthorizeParameters): Promise<void> {
-    await this.authorize.validateRequest(request);
+  async authorizeRequest(
+    request: AuthorizeParameters,
+  ): Promise<AuthorizeParametersT> {
+    return await this.authorize.validateRequest(request);
   }
 }

@@ -1,6 +1,7 @@
 import { ProviderService } from '../../src/provider/provider.service';
 import {
   authorizeParametersMock,
+  authorizeParametersTMock,
   authorizeServiceMock,
 } from '../authorize/authorize.service.mock';
 import { configMock, configServiceMock } from './config/config.service.mock';
@@ -34,6 +35,12 @@ describe('ProviderService', () => {
   });
 
   describe('authorizeRequest', () => {
+    beforeEach(() => {
+      jest
+        .mocked(authorizeServiceMock.validateRequest)
+        .mockResolvedValue(authorizeParametersTMock);
+    });
+
     it('should validate the request', async () => {
       // When
       await service.authorizeRequest(authorizeParametersMock);
@@ -43,6 +50,14 @@ describe('ProviderService', () => {
       expect(authorizeServiceMock.validateRequest).toHaveBeenCalledWith(
         authorizeParametersMock,
       );
+    });
+
+    it('should return the parsed request', async () => {
+      // When
+      const result = await service.authorizeRequest(authorizeParametersMock);
+
+      // Then
+      expect(result).toStrictEqual(authorizeParametersTMock);
     });
   });
 });

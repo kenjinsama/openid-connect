@@ -4,6 +4,7 @@ import { injectable } from 'inversify';
 import {
   AuthorizeParameters,
   AuthorizeParametersDto,
+  AuthorizeParametersT,
 } from './dtos/authorize-parameters.dto';
 
 @injectable()
@@ -12,7 +13,9 @@ export class AuthorizeService {
     console.debug('Initializing AuthorizeService...');
   }
 
-  async validateRequest(request: AuthorizeParameters): Promise<void> {
+  async validateRequest(
+    request: AuthorizeParameters,
+  ): Promise<AuthorizeParametersT> | never {
     console.debug('Validating request:', request);
 
     const requestDto = plainToClass(AuthorizeParametersDto, request, {
@@ -22,5 +25,7 @@ export class AuthorizeService {
     await requestDto.validate();
 
     console.debug('Request is valid:', requestDto.toPlainObject());
+
+    return requestDto.toPlainObject();
   }
 }
