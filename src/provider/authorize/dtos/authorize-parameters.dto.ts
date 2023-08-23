@@ -4,12 +4,12 @@
 import { Expose, Transform } from 'class-transformer';
 import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
-import { Dto } from '../../utils/dto';
-import { Split } from '../../utils/transformers/split.transformer';
-import { Plain } from '../../utils/types/plain.type';
-import { ReplaceSubset } from '../../utils/types/replace-subset.type';
-import { ContainsAtLeastValues } from '../../utils/validators/contains-at-least-values.validator';
-import { ContainsOnlyValuesIn } from '../../utils/validators/contains-only-values-in.validator';
+import { Dto } from '../../../utils/dto';
+import { Split } from '../../../utils/transformers/split.transformer';
+import { Plain } from '../../../utils/types/plain.type';
+import { ReplaceSubset } from '../../../utils/types/replace-subset.type';
+import { ContainsAtLeastValues } from '../../../utils/validators/contains-at-least-values.validator';
+import { ContainsOnlyValuesIn } from '../../../utils/validators/contains-only-values-in.validator';
 import {
   RESPONSE_TYPE_ALLOWED_VALUES,
   SCOPE_AT_LEAST_CONTAINS,

@@ -1,7 +1,7 @@
 import * as ClassTransformer from 'class-transformer';
 
-import { AuthorizeService } from '../../src/authorize/authorize.service';
-import { AuthorizeParametersDto } from '../../src/authorize/dtos/authorize-parameters.dto';
+import { AuthorizeService } from '../../../src/provider/authorize/authorize.service';
+import { AuthorizeParametersDto } from '../../../src/provider/authorize/dtos/authorize-parameters.dto';
 
 import {
   authorizeParametersDto,

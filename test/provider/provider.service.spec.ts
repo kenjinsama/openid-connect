@@ -1,9 +1,10 @@
 import { ProviderService } from '../../src/provider/provider.service';
+
 import {
   authorizeParametersMock,
   authorizeParametersTMock,
   authorizeServiceMock,
-} from '../authorize/authorize.service.mock';
+} from './authorize/authorize.service.mock';
 import { configMock, configServiceMock } from './config/config.service.mock';
 
 describe('ProviderService', () => {

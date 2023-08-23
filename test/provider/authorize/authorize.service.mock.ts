@@ -1,11 +1,11 @@
-import { AuthorizeService } from '../../src/authorize/authorize.service';
+import { AuthorizeService } from '../../../src/provider/authorize/authorize.service';
 import {
   AuthorizeParameters,
   AuthorizeParametersDto,
   AuthorizeParametersT,
-} from '../../src/authorize/dtos/authorize-parameters.dto';
+} from '../../../src/provider/authorize/dtos/authorize-parameters.dto';
 
-jest.mock('../../src/authorize/authorize.service');
+jest.mock('../../../src/provider/authorize/authorize.service');
 
 export const authorizeParametersMock: AuthorizeParameters = {
   response_type: 'code',

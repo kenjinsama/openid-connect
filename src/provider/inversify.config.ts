@@ -3,8 +3,7 @@
 // Declarative file
 import { Container } from 'inversify';
 
-import { AuthorizeService } from '../authorize/authorize.service';
-
+import { AuthorizeService } from './authorize/authorize.service';
 import { ConfigService } from './config/config.service';
 import { Config } from './config/dtos/config.dto';
 import { ProviderService } from './provider.service';

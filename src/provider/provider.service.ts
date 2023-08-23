@@ -1,11 +1,10 @@
 import { inject, injectable, postConstruct } from 'inversify';
 
-import { AuthorizeService } from '../authorize/authorize.service';
-
+import { AuthorizeService } from './authorize/authorize.service';
 import {
   AuthorizeParameters,
   AuthorizeParametersT,
-} from '../authorize/dtos/authorize-parameters.dto';
+} from './authorize/dtos/authorize-parameters.dto';
 import { ConfigService } from './config/config.service';
 import { TYPES } from './types';
 
