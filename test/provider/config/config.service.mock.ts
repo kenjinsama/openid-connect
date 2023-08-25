@@ -12,6 +12,13 @@ export const configMock: Config = {
       redirect_uris: ['https://example.com'],
       post_logout_redirect_uris: ['https://example.com'],
     },
+    {
+      client_id: 'client_id_2',
+      client_secret: 'client_secret_2',
+      redirect_uris: ['https://example-2.com'],
+      post_logout_redirect_uris: ['https://example-2.com'],
+      scopes: ['openid'],
+    },
   ],
   endpoints: {
     authorize: '/authorize',

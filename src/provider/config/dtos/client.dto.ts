@@ -2,7 +2,7 @@
 
 // Declarative file
 import { Expose } from 'class-transformer';
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
 
 import { Dto } from '../../../utils/dto';
 import { Plain } from '../../../utils/types/plain.type';
@@ -25,6 +25,12 @@ export class ClientDto extends Dto {
   @Expose()
   @IsUrl(undefined, { each: true })
   readonly post_logout_redirect_uris: string[];
+
+  @Expose()
+  @IsOptional()
+  @IsNotEmpty({ each: true })
+  @IsString({ each: true })
+  readonly scopes?: string[];
 
   override toPlainObject<T = Client>(): T {
     return super.toPlainObject<T>();

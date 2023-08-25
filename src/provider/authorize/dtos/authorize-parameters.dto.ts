@@ -38,6 +38,7 @@ export class AuthorizeParametersDto extends Dto {
   readonly redirect_uri: string;
 
   @Expose()
+  @IsClientAuthorizedScope()
   @ContainsAtLeastValues(SCOPE_AT_LEAST_CONTAINS)
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly scope: string[];
