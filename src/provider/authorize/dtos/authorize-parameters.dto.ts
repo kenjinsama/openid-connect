@@ -90,16 +90,15 @@ export class AuthorizeParametersDto extends Dto {
   // @IsNotEmpty()
   // readonly acr_values?: string;
 
-  toPlainObject<T = AuthorizeParametersT>(): T {
+  override toPlainObject<T = AuthorizeParameters>(): T {
     return super.toPlainObject<T>();
   }
 }
 
-export type AuthorizeParameters = Plain<AuthorizeParametersDto>;
-export type AuthorizeParametersT = ReplaceSubset<
+export type AuthorizeParameters = ReplaceSubset<
   {
     readonly response_type: string[];
     readonly scope: string[];
   },
-  AuthorizeParameters
+  Plain<AuthorizeParametersDto>
 >;

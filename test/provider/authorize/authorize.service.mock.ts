@@ -2,12 +2,12 @@ import { AuthorizeService } from '../../../src/provider/authorize/authorize.serv
 import {
   AuthorizeParameters,
   AuthorizeParametersDto,
-  AuthorizeParametersT,
 } from '../../../src/provider/authorize/dtos/authorize-parameters.dto';
+import { Plain } from '../../../src/utils/types/plain.type';
 
 jest.mock('../../../src/provider/authorize/authorize.service');
 
-export const authorizeParametersMock: AuthorizeParameters = {
+export const authorizeParametersPlainMock: Plain<AuthorizeParametersDto> = {
   response_type: 'code',
   client_id: 'client_id',
   redirect_uri: 'https://example.com',
@@ -15,13 +15,13 @@ export const authorizeParametersMock: AuthorizeParameters = {
 };
 
 export const authorizeParametersDto: AuthorizeParametersDto = {
-  ...authorizeParametersMock,
+  ...authorizeParametersPlainMock,
   validate: jest.fn(),
   toPlainObject: jest.fn(),
 };
 
-export const authorizeParametersTMock: AuthorizeParametersT = {
-  ...authorizeParametersMock,
+export const authorizeParametersMock: AuthorizeParameters = {
+  ...authorizeParametersPlainMock,
   response_type: ['code'],
   scope: ['openid', 'given_name'],
 };

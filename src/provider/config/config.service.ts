@@ -19,10 +19,12 @@ export class ConfigService {
   get(): Config;
   get<K extends keyof Config>(property: K): Config[K];
   get<K extends keyof Config>(property?: K): Config | Config[K] {
+    const config = this.config.toPlainObject<Config>();
+
     if (property === undefined) {
-      return this.config.toPlainObject();
+      return config;
     }
 
-    return this.config[property];
+    return config[property];
   }
 }

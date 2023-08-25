@@ -6,7 +6,6 @@ import { AuthorizeParametersDto } from '../../../src/provider/authorize/dtos/aut
 import {
   authorizeParametersDto,
   authorizeParametersMock,
-  authorizeParametersTMock,
 } from './authorize.service.mock';
 
 describe('AuthorizeService', () => {
@@ -30,7 +29,7 @@ describe('AuthorizeService', () => {
 
       jest
         .mocked(authorizeParametersDto.toPlainObject)
-        .mockReturnValue(authorizeParametersTMock);
+        .mockReturnValue(authorizeParametersMock);
     });
 
     it('should instantiate the DTO', async () => {
@@ -62,7 +61,7 @@ describe('AuthorizeService', () => {
       const result = await service.validateRequest(authorizeParametersMock);
 
       // Then
-      expect(result).toStrictEqual(authorizeParametersTMock);
+      expect(result).toStrictEqual(authorizeParametersMock);
     });
   });
 });

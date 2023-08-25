@@ -6,10 +6,11 @@ import { IsUrl, ValidateNested } from 'class-validator';
 
 import { Dto } from '../../../utils/dto';
 import { Plain } from '../../../utils/types/plain.type';
+import { ReplaceSubset } from '../../../utils/types/replace-subset.type';
 import { RefParent } from '../../../utils/validate-if-parent';
-import { EndpointDto } from './endpoints.dto';
-import { FeaturesDto } from './features.dto';
-import { ClientDto } from './service-provider.dto';
+import { Endpoint, EndpointDto } from './endpoints.dto';
+import { Features, FeaturesDto } from './features.dto';
+import { Client, ClientDto } from './service-provider.dto';
 
 export class ConfigDto extends Dto {
   @Expose()
@@ -31,6 +32,17 @@ export class ConfigDto extends Dto {
   @ValidateNested()
   @Type(() => FeaturesDto)
   readonly features: FeaturesDto;
+
+  override toPlainObject<T = Config>(): T {
+    return super.toPlainObject<T>();
+  }
 }
 
-export type Config = Plain<ConfigDto>;
+export type Config = ReplaceSubset<
+  {
+    clients: Client[];
+    endpoints: Endpoint;
+    features: Features;
+  },
+  Plain<ConfigDto>
+>;

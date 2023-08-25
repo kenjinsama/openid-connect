@@ -25,6 +25,10 @@ export class ClientDto extends Dto {
   @Expose()
   @IsUrl(undefined, { each: true })
   readonly post_logout_redirect_uris: string[];
+
+  override toPlainObject<T = Client>(): T {
+    return super.toPlainObject<T>();
+  }
 }
 
 export type Client = Plain<ClientDto>;

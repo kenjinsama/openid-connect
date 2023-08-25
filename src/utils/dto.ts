@@ -1,6 +1,5 @@
 import { instanceToPlain } from 'class-transformer';
 import { validateOrReject } from 'class-validator';
-import { Plain } from './types/plain.type';
 
 export class Dto {
   async validate() {
@@ -17,7 +16,7 @@ export class Dto {
     }
   }
 
-  toPlainObject<T = Plain<this>>(): T {
+  toPlainObject<T = unknown>(): T {
     return instanceToPlain(this) as T;
   }
 }
