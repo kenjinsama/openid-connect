@@ -7,9 +7,9 @@ import { IsUrl, ValidateNested } from 'class-validator';
 import { Dto } from '../../../utils/dto';
 import { Plain } from '../../../utils/types/plain.type';
 import { RefParent } from '../../../utils/validate-if-parent';
+import { ClientDto } from './client.dto';
 import { EndpointDto } from './endpoints.dto';
 import { FeaturesDto } from './features.dto';
-import { ClientDto } from './service-provider.dto';
 
 export class ConfigDto extends Dto {
   @Expose()

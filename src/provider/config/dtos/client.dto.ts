@@ -9,8 +9,8 @@ import { Plain } from '../../../utils/types/plain.type';
 
 export class ClientDto extends Dto {
   @Expose()
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   readonly client_id: string;
 
   @Expose()

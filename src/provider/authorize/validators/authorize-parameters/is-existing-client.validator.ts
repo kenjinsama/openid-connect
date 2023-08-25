@@ -1,6 +1,6 @@
 import { ValidationOptions, registerDecorator } from 'class-validator';
 import { ValidationArgumentsGeneric } from '../../../../utils/types/validation-arguments-generic.type';
-import { Client } from '../../../config/dtos/service-provider.dto';
+import { Client } from '../../../config/dtos/client.dto';
 import { AuthorizeParametersDto } from '../../dtos/authorize-parameters.dto';
 
 export function validate(
