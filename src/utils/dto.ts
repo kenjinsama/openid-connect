@@ -2,7 +2,9 @@ import { instanceToPlain } from 'class-transformer';
 import { validateOrReject } from 'class-validator';
 
 export class Dto {
-  async validate() {
+  // Need this to override the with different parameters on child classes
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async validate(..._args: unknown[]) {
     console.debug(`Validating ${this.constructor.name}...`);
     try {
       await validateOrReject(this, {
