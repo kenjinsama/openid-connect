@@ -2,11 +2,11 @@ import { AuthorizeParametersDto } from '../../../../../src/provider/authorize/dt
 import {
   defaultMessage,
   validate,
-} from '../../../../../src/provider/authorize/validators/authorize-parameters/is-valid-redirect-uri.validator';
+} from '../../../../../src/provider/authorize/validators/authorize-parameters/is-client-authorized-redirect-uri.validator';
 import { ValidationArgumentsGeneric } from '../../../../../src/utils/types/validation-arguments-generic.type';
 import { configMock } from '../../../config/config.service.mock';
 
-describe('IsValidRedirectUri', () => {
+describe('IsClientAuthorizedRedirectUri', () => {
   const [clientMock] = configMock.clients;
   const redirectUriMock = clientMock.redirect_uris[0];
 

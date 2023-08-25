@@ -16,8 +16,8 @@ import {
   SCOPE_AT_LEAST_CONTAINS,
   VALUES_SEPARATOR,
 } from '../constants';
+import { IsClientAuthorizedRedirectUri } from '../validators/authorize-parameters/is-client-authorized-redirect-uri.validator';
 import { IsExistingClient } from '../validators/authorize-parameters/is-existing-client.validator';
-import { IsValidRedirectUri } from '../validators/authorize-parameters/is-valid-redirect-uri.validator';
 
 export class AuthorizeParametersDto extends Dto {
   @Expose()
@@ -34,7 +34,7 @@ export class AuthorizeParametersDto extends Dto {
   readonly client_id: string;
 
   @Expose()
-  @IsValidRedirectUri()
+  @IsClientAuthorizedRedirectUri()
   @IsUrl()
   readonly redirect_uri: string;
 

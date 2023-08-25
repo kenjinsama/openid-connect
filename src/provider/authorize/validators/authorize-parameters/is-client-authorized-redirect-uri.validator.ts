@@ -29,12 +29,12 @@ export function defaultMessage(
 
 // Declarative code only
 /* istanbul ignore next */
-export function IsValidRedirectUri(
+export function IsClientAuthorizedRedirectUri(
   validationOptions?: ValidationOptions,
 ): PropertyDecorator {
   return function (object: Object, propertyName: string | Symbol) {
     registerDecorator({
-      name: 'isValidRedirectUri',
+      name: 'isClientAuthorizedRedirectUri',
       target: object.constructor,
       propertyName: propertyName.toString(),
       constraints: [],
