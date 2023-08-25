@@ -4,24 +4,15 @@ import {
   registerDecorator,
 } from 'class-validator';
 
-export interface ContainsAtLeastValuesOptions {
-  separator: string | RegExp;
-  trim?: boolean;
-  limit?: number;
-}
-
 export function validate(value: unknown, args: ValidationArguments) {
-  const [mandatoryValues, { separator, trim = true, limit }] =
-    args.constraints as [string[], ContainsAtLeastValuesOptions];
+  const [mandatoryValues] = args.constraints as [string[]];
 
-  if (typeof value !== 'string') {
+  if (!Array.isArray(value)) {
     return false;
   }
 
-  const splitValues = (trim ? value.trim() : value).split(separator, limit);
-
-  return mandatoryValues.every(value =>
-    splitValues.map(value => (trim ? value.trim() : value)).includes(value),
+  return mandatoryValues.every(mandatoryValue =>
+    value.includes(mandatoryValue),
   );
 }
 
@@ -37,7 +28,6 @@ export function defaultMessage(args: ValidationArguments) {
 /* istanbul ignore next */
 export function ContainsAtLeastValues(
   mandatoryValues: string[],
-  options: ContainsAtLeastValuesOptions,
   validationOptions?: ValidationOptions,
 ): PropertyDecorator {
   return function (object: Object, propertyName: string | Symbol) {
@@ -45,7 +35,7 @@ export function ContainsAtLeastValues(
       name: 'containsAtLeastValues',
       target: object.constructor,
       propertyName: propertyName.toString(),
-      constraints: [mandatoryValues, options],
+      constraints: [mandatoryValues],
       options: validationOptions,
       validator: {
         validate,

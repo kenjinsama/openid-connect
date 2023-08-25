@@ -6,6 +6,7 @@ import { TYPES } from '../types';
 import {
   AuthorizeParameters,
   AuthorizeParametersDto,
+  AuthorizeParametersValid,
 } from './dtos/authorize-parameters.dto';
 
 @injectable()
@@ -18,7 +19,7 @@ export class AuthorizeService {
 
   async validateRequest(
     request: AuthorizeParameters,
-  ): Promise<AuthorizeParameters> | never {
+  ): Promise<AuthorizeParametersValid> | never {
     console.debug('Validating request:', request);
 
     const requestDto = plainToClass(AuthorizeParametersDto, request, {

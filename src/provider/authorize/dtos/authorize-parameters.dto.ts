@@ -17,15 +17,14 @@ import {
   VALUES_SEPARATOR,
 } from '../constants';
 import { IsClientAuthorizedRedirectUri } from '../validators/authorize-parameters/is-client-authorized-redirect-uri.validator';
+import { IsClientAuthorizedScope } from '../validators/authorize-parameters/is-client-authorized-scope.validator';
 import { IsExistingClient } from '../validators/authorize-parameters/is-existing-client.validator';
 
 export class AuthorizeParametersDto extends Dto {
   @Expose()
-  @Transform(Split(VALUES_SEPARATOR), { toPlainOnly: true })
-  @ContainsOnlyValuesIn(RESPONSE_TYPE_ALLOWED_VALUES, {
-    separator: VALUES_SEPARATOR,
-  })
-  readonly response_type: string;
+  @ContainsOnlyValuesIn(RESPONSE_TYPE_ALLOWED_VALUES)
+  @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
+  readonly response_type: string[];
 
   @Expose()
   @IsExistingClient()
@@ -39,11 +38,9 @@ export class AuthorizeParametersDto extends Dto {
   readonly redirect_uri: string;
 
   @Expose()
-  @Transform(Split(VALUES_SEPARATOR), { toPlainOnly: true })
-  @ContainsAtLeastValues(SCOPE_AT_LEAST_CONTAINS, {
-    separator: VALUES_SEPARATOR,
-  })
-  readonly scope: string;
+  @ContainsAtLeastValues(SCOPE_AT_LEAST_CONTAINS)
+  @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
+  readonly scope: string[];
 
   // @IsOptional()
   // @IsString()
@@ -95,7 +92,7 @@ export class AuthorizeParametersDto extends Dto {
   // @IsNotEmpty()
   // readonly acr_values?: string;
 
-  override toPlainObject<T = AuthorizeParameters>(): T {
+  override toPlainObject<T = AuthorizeParametersValid>(): T {
     return super.toPlainObject<T>();
   }
 
@@ -112,8 +109,9 @@ export class AuthorizeParametersDto extends Dto {
 
 export type AuthorizeParameters = ReplaceSubset<
   {
-    readonly response_type: string[];
-    readonly scope: string[];
+    response_type: string;
+    scope: string;
   },
-  Plain<AuthorizeParametersDto>
+  AuthorizeParametersValid
 >;
+export type AuthorizeParametersValid = Plain<AuthorizeParametersDto>;

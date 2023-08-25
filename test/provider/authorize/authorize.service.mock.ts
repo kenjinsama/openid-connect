@@ -2,29 +2,29 @@ import { AuthorizeService } from '../../../src/provider/authorize/authorize.serv
 import {
   AuthorizeParameters,
   AuthorizeParametersDto,
+  AuthorizeParametersValid,
 } from '../../../src/provider/authorize/dtos/authorize-parameters.dto';
-import { Plain } from '../../../src/utils/types/plain.type';
 import { configServiceMock } from '../config/config.service.mock';
 
 jest.mock('../../../src/provider/authorize/authorize.service');
 
-export const authorizeParametersPlainMock: Plain<AuthorizeParametersDto> = {
+export const authorizeParametersMock: AuthorizeParameters = {
   response_type: 'code',
   client_id: 'client_id',
   redirect_uri: 'https://example.com',
   scope: '  openid   given_name  ',
 };
 
-export const authorizeParametersDto: AuthorizeParametersDto = {
-  ...authorizeParametersPlainMock,
-  validate: jest.fn(),
-  toPlainObject: jest.fn(),
-};
-
-export const authorizeParametersMock: AuthorizeParameters = {
-  ...authorizeParametersPlainMock,
+export const authorizeParametersValidMock: AuthorizeParametersValid = {
+  ...authorizeParametersMock,
   response_type: ['code'],
   scope: ['openid', 'given_name'],
+};
+
+export const authorizeParametersDto: AuthorizeParametersDto = {
+  ...authorizeParametersValidMock,
+  validate: jest.fn(),
+  toPlainObject: jest.fn(),
 };
 
 export const authorizeServiceMock = new AuthorizeService(

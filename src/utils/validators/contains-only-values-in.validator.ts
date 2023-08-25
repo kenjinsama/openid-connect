@@ -4,40 +4,30 @@ import {
   registerDecorator,
 } from 'class-validator';
 
-export interface ContainsOnlyValuesInOptions {
-  separator: string | RegExp;
-  trim?: boolean;
-  limit?: number;
-}
-
 export function validate(value: unknown, args: ValidationArguments) {
-  const [allowedValues, { separator, trim = true, limit }] =
-    args.constraints as [string[], ContainsOnlyValuesInOptions];
+  const [allowedValues] = args.constraints as [string[]];
 
-  if (typeof value !== 'string') {
+  if (!Array.isArray(value)) {
     return false;
   }
 
-  const splitValues = (trim ? value.trim() : value).split(separator, limit);
-
-  return splitValues.every(value =>
-    allowedValues.includes(trim ? value.trim() : value),
+  return value.every(
+    value => typeof value === 'string' && allowedValues.includes(value),
   );
 }
 
 export function defaultMessage(args: ValidationArguments) {
   const [allowedValues] = args.constraints as [string[]];
 
-  return `Invalid values in ${args.property}: ${
-    args.value
-  }. Allowed values: ${allowedValues.join(', ')}`;
+  return `Invalid values in ${args.property}: ${args.value.join(
+    ', ',
+  )}. Allowed values: ${allowedValues.join(', ')}`;
 }
 
 // Declarative code only
 /* istanbul ignore next */
 export function ContainsOnlyValuesIn(
   allowedValues: string[],
-  options: ContainsOnlyValuesInOptions,
   validationOptions?: ValidationOptions,
 ): PropertyDecorator {
   return function (object: Object, propertyName: string | Symbol) {
@@ -45,7 +35,7 @@ export function ContainsOnlyValuesIn(
       name: 'containsOnlyValuesIn',
       target: object.constructor,
       propertyName: propertyName.toString(),
-      constraints: [allowedValues, options],
+      constraints: [allowedValues],
       options: validationOptions,
       validator: {
         validate,

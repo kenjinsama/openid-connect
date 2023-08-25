@@ -2,6 +2,7 @@ import { ProviderService } from '../../src/provider/provider.service';
 
 import {
   authorizeParametersMock,
+  authorizeParametersValidMock,
   authorizeServiceMock,
 } from './authorize/authorize.service.mock';
 import { configMock, configServiceMock } from './config/config.service.mock';
@@ -38,7 +39,7 @@ describe('ProviderService', () => {
     beforeEach(() => {
       jest
         .mocked(authorizeServiceMock.validateRequest)
-        .mockResolvedValue(authorizeParametersMock);
+        .mockResolvedValue(authorizeParametersValidMock);
     });
 
     it('should validate the request', async () => {
@@ -57,7 +58,7 @@ describe('ProviderService', () => {
       const result = await service.authorizeRequest(authorizeParametersMock);
 
       // Then
-      expect(result).toStrictEqual(authorizeParametersMock);
+      expect(result).toStrictEqual(authorizeParametersValidMock);
     });
   });
 });
