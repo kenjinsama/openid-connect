@@ -16,6 +16,7 @@ import {
   SCOPE_AT_LEAST_CONTAINS,
   VALUES_SEPARATOR,
 } from '../constants';
+import { IsExistingClient } from '../validators/authorize-parameters/is-existing-client.validator';
 import { IsValidRedirectUri } from '../validators/authorize-parameters/is-valid-redirect-uri.validator';
 
 export class AuthorizeParametersDto extends Dto {
@@ -27,6 +28,7 @@ export class AuthorizeParametersDto extends Dto {
   readonly response_type: string;
 
   @Expose()
+  @IsExistingClient()
   @IsNotEmpty()
   @IsString()
   readonly client_id: string;
