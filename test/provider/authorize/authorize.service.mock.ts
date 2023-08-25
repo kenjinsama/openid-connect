@@ -4,6 +4,7 @@ import {
   AuthorizeParametersDto,
 } from '../../../src/provider/authorize/dtos/authorize-parameters.dto';
 import { Plain } from '../../../src/utils/types/plain.type';
+import { configServiceMock } from '../config/config.service.mock';
 
 jest.mock('../../../src/provider/authorize/authorize.service');
 
@@ -26,5 +27,6 @@ export const authorizeParametersMock: AuthorizeParameters = {
   scope: ['openid', 'given_name'],
 };
 
-export const authorizeServiceMock =
-  new AuthorizeService() as jest.Mocked<AuthorizeService>;
+export const authorizeServiceMock = new AuthorizeService(
+  configServiceMock,
+) as jest.Mocked<AuthorizeService>;

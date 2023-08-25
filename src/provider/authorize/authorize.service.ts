@@ -1,6 +1,8 @@
 import { plainToClass } from 'class-transformer';
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 
+import { ConfigService } from '../config/config.service';
+import { TYPES } from '../types';
 import {
   AuthorizeParameters,
   AuthorizeParametersDto,
@@ -8,7 +10,9 @@ import {
 
 @injectable()
 export class AuthorizeService {
-  constructor() {
+  constructor(
+    @inject(TYPES.ConfigService) private readonly configService: ConfigService,
+  ) {
     console.debug('Initializing AuthorizeService...');
   }
 
@@ -21,7 +25,9 @@ export class AuthorizeService {
       excludeExtraneousValues: true,
     });
 
-    await requestDto.validate();
+    const config = await this.configService.get();
+
+    await requestDto.validate(config);
 
     console.debug('Request is valid:', requestDto.toPlainObject());
 

@@ -10,11 +10,13 @@ import { Plain } from '../../../utils/types/plain.type';
 import { ReplaceSubset } from '../../../utils/types/replace-subset.type';
 import { ContainsAtLeastValues } from '../../../utils/validators/contains-at-least-values.validator';
 import { ContainsOnlyValuesIn } from '../../../utils/validators/contains-only-values-in.validator';
+import { Config } from '../../config/dtos/config.dto';
 import {
   RESPONSE_TYPE_ALLOWED_VALUES,
   SCOPE_AT_LEAST_CONTAINS,
   VALUES_SEPARATOR,
 } from '../constants';
+import { IsValidRedirectUri } from '../validators/authorize-parameters/is-valid-redirect-uri.validator';
 
 export class AuthorizeParametersDto extends Dto {
   @Expose()
@@ -30,6 +32,7 @@ export class AuthorizeParametersDto extends Dto {
   readonly client_id: string;
 
   @Expose()
+  @IsValidRedirectUri()
   @IsUrl()
   readonly redirect_uri: string;
 
@@ -92,6 +95,16 @@ export class AuthorizeParametersDto extends Dto {
 
   override toPlainObject<T = AuthorizeParameters>(): T {
     return super.toPlainObject<T>();
+  }
+
+  override async validate(config: Config): Promise<void> {
+    const client = config.clients.find(
+      client => client.client_id === this.client_id,
+    );
+
+    Reflect.defineMetadata('__client', client, this);
+
+    return await super.validate();
   }
 }
 
