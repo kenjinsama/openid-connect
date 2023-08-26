@@ -2,7 +2,7 @@
 
 // Declarative file
 import { Expose, Transform } from 'class-transformer';
-import { IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsIn, IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
 
 import { Dto } from '../../../utils/dto';
 import { Split } from '../../../utils/transformers/split.transformer';
@@ -12,6 +12,8 @@ import { ContainsAtLeastValues } from '../../../utils/validators/contains-at-lea
 import { ContainsOnlyValuesIn } from '../../../utils/validators/contains-only-values-in.validator';
 import { Config } from '../../config/dtos/config.dto';
 import {
+  DISPLAY_ALLOWED_VALUES,
+  PROMPT_ALLOWED_VALUES,
   RESPONSE_TYPE_ALLOWED_VALUES,
   SCOPE_AT_LEAST_CONTAINS,
   VALUES_SEPARATOR,
@@ -53,15 +55,15 @@ export class AuthorizeParametersDto extends Dto {
   @IsNotEmpty()
   readonly nonce?: string;
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly display?: string;
+  @IsOptional()
+  @IsIn(DISPLAY_ALLOWED_VALUES)
+  @IsString()
+  readonly display?: string;
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly prompt?: string;
+  @IsOptional()
+  @IsIn(PROMPT_ALLOWED_VALUES)
+  @IsString()
+  readonly prompt?: string;
 
   // @IsOptional()
   // @IsString()
