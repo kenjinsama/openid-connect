@@ -2,7 +2,7 @@
 
 // Declarative file
 import { Expose, Transform } from 'class-transformer';
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
 
 import { Dto } from '../../../utils/dto';
 import { Split } from '../../../utils/transformers/split.transformer';
@@ -43,15 +43,15 @@ export class AuthorizeParametersDto extends Dto {
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly scope: string[];
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly state?: string;
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  readonly state?: string;
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly nonce?: string;
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  readonly nonce?: string;
 
   // @IsOptional()
   // @IsString()
