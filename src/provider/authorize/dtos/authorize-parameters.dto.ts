@@ -1,6 +1,3 @@
-/* istanbul ignore file */
-
-// Declarative file
 import { Expose, Transform } from 'class-transformer';
 import {
   IsIn,
@@ -100,6 +97,8 @@ export class AuthorizeParametersDto extends Dto {
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly acr_values?: string[];
 
+  // Declarative code only
+  /* istanbul ignore next */
   override toPlainObject<T = AuthorizeParametersValid>(): T {
     return super.toPlainObject<T>();
   }
