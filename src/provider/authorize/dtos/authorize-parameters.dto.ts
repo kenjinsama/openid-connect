@@ -17,7 +17,6 @@ import { Split } from '../../../utils/transformers/split.transformer';
 import { Plain } from '../../../utils/types/plain.type';
 import { ReplaceSubset } from '../../../utils/types/replace-subset.type';
 import { ContainsAtLeastValues } from '../../../utils/validators/contains-at-least-values.validator';
-import { ContainsOnlyValuesIn } from '../../../utils/validators/contains-only-values-in.validator';
 import { Config } from '../../config/dtos/config.dto';
 import {
   DISPLAY_ALLOWED_VALUES,
@@ -32,7 +31,7 @@ import { IsExistingClient } from '../validators/authorize-parameters/is-existing
 
 export class AuthorizeParametersDto extends Dto {
   @Expose()
-  @ContainsOnlyValuesIn(RESPONSE_TYPE_ALLOWED_VALUES)
+  @IsIn(RESPONSE_TYPE_ALLOWED_VALUES, { each: true })
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly response_type: string[];
 
