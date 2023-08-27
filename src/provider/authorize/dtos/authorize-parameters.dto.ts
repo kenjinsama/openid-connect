@@ -1,5 +1,6 @@
 import { Expose, Transform } from 'class-transformer';
 import {
+  ArrayContains,
   IsIn,
   IsJWT,
   IsLocale,
@@ -16,7 +17,6 @@ import { ParseInt } from '../../../utils/transformers/parse-int.transformer';
 import { Split } from '../../../utils/transformers/split.transformer';
 import { Plain } from '../../../utils/types/plain.type';
 import { ReplaceSubset } from '../../../utils/types/replace-subset.type';
-import { ContainsAtLeastValues } from '../../../utils/validators/contains-at-least-values.validator';
 import { Config } from '../../config/dtos/config.dto';
 import {
   DISPLAY_ALLOWED_VALUES,
@@ -48,7 +48,7 @@ export class AuthorizeParametersDto extends Dto {
 
   @Expose()
   @IsClientAuthorizedScope()
-  @ContainsAtLeastValues(SCOPE_AT_LEAST_CONTAINS)
+  @ArrayContains(SCOPE_AT_LEAST_CONTAINS)
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly scope: string[];
 
