@@ -92,6 +92,12 @@ export class AuthorizeParametersDto extends Dto {
 
   @Expose()
   @IsOptional()
+  @IsLocale({ each: true })
+  @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
+  readonly claims_locales?: string[];
+
+  @Expose()
+  @IsOptional()
   @IsJWT()
   readonly id_token_hint?: string;
 
@@ -142,6 +148,7 @@ export type AuthorizeParameters = ReplaceSubset<
     scope: string;
     max_age: string;
     ui_locales: string;
+    claims_locales: string;
     acr_values: string;
   },
   AuthorizeParametersValid
