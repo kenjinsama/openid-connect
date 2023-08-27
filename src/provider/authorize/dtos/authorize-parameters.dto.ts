@@ -4,6 +4,7 @@
 import { Expose, Transform } from 'class-transformer';
 import {
   IsIn,
+  IsLocale,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -78,15 +79,10 @@ export class AuthorizeParametersDto extends Dto {
   @Transform(ParseInt(), { toClassOnly: true })
   readonly max_age?: number;
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly ui_locales?: string;
-
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly claims_locales?: string;
+  @IsOptional()
+  @IsLocale({ each: true })
+  @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
+  readonly ui_locales?: string[];
 
   // @IsOptional()
   // @IsString()
