@@ -4,6 +4,7 @@
 import { Expose, Transform } from 'class-transformer';
 import {
   IsIn,
+  IsJWT,
   IsLocale,
   IsNotEmpty,
   IsOptional,
@@ -84,10 +85,9 @@ export class AuthorizeParametersDto extends Dto {
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly ui_locales?: string[];
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly id_token_hint?: string;
+  @IsOptional()
+  @IsJWT()
+  readonly id_token_hint?: string;
 
   // @IsOptional()
   // @IsString()
