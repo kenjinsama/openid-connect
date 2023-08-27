@@ -94,10 +94,11 @@ export class AuthorizeParametersDto extends Dto {
   @IsString()
   readonly login_hint?: string;
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly acr_values?: string;
+  @IsOptional()
+  @IsNotEmpty({ each: true })
+  @IsString({ each: true })
+  @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
+  readonly acr_values?: string[];
 
   override toPlainObject<T = AuthorizeParametersValid>(): T {
     return super.toPlainObject<T>();
