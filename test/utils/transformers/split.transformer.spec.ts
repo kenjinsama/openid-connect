@@ -1,6 +1,27 @@
 import { Split } from '../../../src/utils/transformers/split.transformer';
 
 describe('SplitTransformer', () => {
+  it('should return a function', () => {
+    // When
+    const transformer = Split(' ');
+
+    // Then
+    expect(transformer).toBeInstanceOf(Function);
+  });
+
+  it('should return undefined if the value is undefined', () => {
+    // Given
+    const separator = ' ';
+    const value = undefined;
+    const key = 'someProperty';
+
+    // When
+    const result = Split(separator)({ value, key });
+
+    // Then
+    expect(result).toBeUndefined();
+  });
+
   it('should split a string into an array', () => {
     // Given
     const separator = ' ';

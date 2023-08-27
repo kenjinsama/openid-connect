@@ -9,6 +9,18 @@ describe('ParseInt', () => {
     expect(transformer).toBeInstanceOf(Function);
   });
 
+  it('should return undefined if the value is undefined', () => {
+    // Given
+    const transformer = ParseInt({ base: 10 });
+    const value = undefined;
+
+    // When
+    const result = transformer({ value, key: 'key' });
+
+    // Then
+    expect(result).toBeUndefined();
+  });
+
   it('should throw an error if the value is not a string', () => {
     // Given
     const transformer = ParseInt({ base: 10 });

@@ -13,7 +13,11 @@ export function Split(
   }: {
     value: unknown;
     key: string | Symbol;
-  }): string[] => {
+  }): string[] | undefined => {
+    if (value === undefined) {
+      return undefined;
+    }
+
     if (typeof value !== 'string') {
       throw new Error(`"${key}" must contains a string.`);
     }
