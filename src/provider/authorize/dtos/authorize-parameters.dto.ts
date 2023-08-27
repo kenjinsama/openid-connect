@@ -140,6 +140,9 @@ export type AuthorizeParameters = ReplaceSubset<
   {
     response_type: string;
     scope: string;
+    max_age: string;
+    ui_locales: string;
+    acr_values: string;
   },
   AuthorizeParametersValid
 >;
