@@ -89,10 +89,10 @@ export class AuthorizeParametersDto extends Dto {
   @IsJWT()
   readonly id_token_hint?: string;
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly login_hint?: string;
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  readonly login_hint?: string;
 
   // @IsOptional()
   // @IsString()
