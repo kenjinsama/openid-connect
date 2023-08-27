@@ -8,6 +8,7 @@ import {
   IsString,
   IsUrl,
   Min,
+  ValidateIf,
 } from 'class-validator';
 
 import { Dto } from '../../../utils/dto';
@@ -57,9 +58,9 @@ export class AuthorizeParametersDto extends Dto {
   @IsString()
   readonly state?: string;
 
-  @IsOptional()
-  @IsString()
   @IsNotEmpty()
+  @IsString()
+  @ValidateIf(AuthorizeParametersDto.nonceIsMandatory)
   readonly nonce?: string;
 
   @IsOptional()
@@ -111,6 +112,17 @@ export class AuthorizeParametersDto extends Dto {
     Reflect.defineMetadata('__client', client, this);
 
     return await super.validate();
+  }
+
+  private static nonceIsMandatory(
+    object: AuthorizeParametersDto,
+    value: unknown,
+  ): boolean {
+    return (
+      value !== undefined ||
+      object.response_type?.includes('token') ||
+      object.response_type?.includes('id_token')
+    );
   }
 }
 

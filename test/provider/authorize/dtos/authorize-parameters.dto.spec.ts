@@ -62,4 +62,76 @@ describe('AuthorizeParametersDto', () => {
       expect(Dto.prototype.validate).toHaveBeenCalledWith();
     });
   });
+
+  describe('nonceIsMandatory', () => {
+    it('should return true if the value is defined', () => {
+      // Given
+      const value = 'value';
+
+      // When
+      const result = AuthorizeParametersDto['nonceIsMandatory'](
+        dto,
+        value as unknown,
+      );
+
+      // Then
+      expect(result).toBe(true);
+    });
+
+    it('should return true if the value is undefined and response_type includes token', () => {
+      // Given
+      const value = undefined;
+      const dto = plainToClass(
+        AuthorizeParametersDto,
+        { ...authorizeParametersMock, response_type: 'token' },
+        {
+          excludeExtraneousValues: true,
+        },
+      );
+
+      // When
+      const result = AuthorizeParametersDto['nonceIsMandatory'](
+        dto,
+        value as unknown,
+      );
+
+      // Then
+      expect(result).toBe(true);
+    });
+
+    it('should return true if the value is undefined and response_type includes id_token', () => {
+      // Given
+      const value = undefined;
+      const dto = plainToClass(
+        AuthorizeParametersDto,
+        { ...authorizeParametersMock, response_type: 'id_token' },
+        {
+          excludeExtraneousValues: true,
+        },
+      );
+
+      // When
+      const result = AuthorizeParametersDto['nonceIsMandatory'](
+        dto,
+        value as unknown,
+      );
+
+      // Then
+      expect(result).toBe(true);
+    });
+
+    it('should return false if the value is undefined and response_type does not include token or id_token', () => {
+      // Given
+      const value = undefined;
+
+      // When
+      const result = AuthorizeParametersDto['nonceIsMandatory'](
+        dto,
+        value as unknown,
+      );
+
+      // Then
+      expect(result).toBe(false);
+    });
+  });
 });
