@@ -59,6 +59,16 @@ export class AuthorizeParametersDto extends Dto {
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly scope: string[];
 
+  /**
+   * @see https://openid.net/specs/openid-connect-core-1_0.html#rfc.section.5.5
+   */
+  // @Expose()
+  // @IsOptional()
+  // @ValidateNested()
+  // @Type(() => Object)
+  // @IsObject()
+  // readonly claims?: string;
+
   @Expose()
   @IsOptional()
   @IsNotEmpty()
