@@ -28,9 +28,11 @@ import {
 import { IsClientAuthorizedRedirectUri } from '../validators/authorize-parameters/is-client-authorized-redirect-uri.validator';
 import { IsClientAuthorizedScope } from '../validators/authorize-parameters/is-client-authorized-scope.validator';
 import { IsExistingClient } from '../validators/authorize-parameters/is-existing-client.validator';
+import { IsNotForbiddenResponseType } from '../validators/authorize-parameters/is-not-forbidden-response-type.validator';
 
 export class AuthorizeParametersDto extends Dto {
   @Expose()
+  @IsNotForbiddenResponseType()
   @IsIn(RESPONSE_TYPE_ALLOWED_VALUES, { each: true })
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly response_type: string[];
