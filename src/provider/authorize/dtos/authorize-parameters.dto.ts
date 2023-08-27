@@ -2,9 +2,17 @@
 
 // Declarative file
 import { Expose, Transform } from 'class-transformer';
-import { IsIn, IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
+import {
+  IsIn,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUrl,
+  Min,
+} from 'class-validator';
 
 import { Dto } from '../../../utils/dto';
+import { ParseInt } from '../../../utils/transformers/parse-int.transformer';
 import { Split } from '../../../utils/transformers/split.transformer';
 import { Plain } from '../../../utils/types/plain.type';
 import { ReplaceSubset } from '../../../utils/types/replace-subset.type';
@@ -65,10 +73,10 @@ export class AuthorizeParametersDto extends Dto {
   @IsString()
   readonly prompt?: string;
 
-  // @IsOptional()
-  // @IsString()
-  // @IsNotEmpty()
-  // readonly max_age?: string;
+  @IsOptional()
+  @Min(0)
+  @Transform(ParseInt(), { toClassOnly: true })
+  readonly max_age?: number;
 
   // @IsOptional()
   // @IsString()
