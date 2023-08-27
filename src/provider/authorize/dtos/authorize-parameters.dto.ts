@@ -53,45 +53,54 @@ export class AuthorizeParametersDto extends Dto {
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly scope: string[];
 
+  @Expose()
   @IsOptional()
   @IsNotEmpty()
   @IsString()
   readonly state?: string;
 
+  @Expose()
   @IsNotEmpty()
   @IsString()
   @ValidateIf(AuthorizeParametersDto.nonceIsMandatory)
   readonly nonce?: string;
 
+  @Expose()
   @IsOptional()
   @IsIn(DISPLAY_ALLOWED_VALUES)
   @IsString()
   readonly display?: string;
 
+  @Expose()
   @IsOptional()
   @IsIn(PROMPT_ALLOWED_VALUES)
   @IsString()
   readonly prompt?: string;
 
+  @Expose()
   @IsOptional()
   @Min(0)
   @Transform(ParseInt(), { toClassOnly: true })
   readonly max_age?: number;
 
+  @Expose()
   @IsOptional()
   @IsLocale({ each: true })
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly ui_locales?: string[];
 
+  @Expose()
   @IsOptional()
   @IsJWT()
   readonly id_token_hint?: string;
 
+  @Expose()
   @IsOptional()
   @IsNotEmpty()
   @IsString()
   readonly login_hint?: string;
 
+  @Expose()
   @IsOptional()
   @IsNotEmpty({ each: true })
   @IsString({ each: true })
