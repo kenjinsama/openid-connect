@@ -1,6 +1,7 @@
 import { Expose, Transform } from 'class-transformer';
 import {
   ArrayContains,
+  IsAscii,
   IsIn,
   IsJWT,
   IsLocale,
@@ -48,9 +49,13 @@ export class AuthorizeParametersDto extends Dto {
   @IsUrl()
   readonly redirect_uri: string;
 
+  /**
+   * @see https://openid.net/specs/openid-connect-core-1_0.html#rfc.section.5.4
+   */
   @Expose()
   @IsClientAuthorizedScope()
   @ArrayContains(SCOPE_AT_LEAST_CONTAINS)
+  @IsAscii({ each: true })
   @Transform(Split(VALUES_SEPARATOR), { toClassOnly: true })
   readonly scope: string[];
 
