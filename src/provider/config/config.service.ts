@@ -13,7 +13,13 @@ export class ConfigService {
 
   public async setup() {
     console.debug('Setting up...', this.config);
-    await this.config.validate();
+    const validationErrors = await this.config.validate();
+
+    if (validationErrors.length > 0) {
+      throw validationErrors;
+    }
+
+    console.debug('Config is valid:', this.config.toPlainObject());
   }
 
   get(): Config;

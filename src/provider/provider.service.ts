@@ -1,5 +1,6 @@
 import { inject, injectable, postConstruct } from 'inversify';
 
+import { ValidationError } from 'class-validator';
 import { AuthorizeService } from './authorize/authorize.service';
 import {
   AuthorizeParameters,
@@ -25,7 +26,7 @@ export class ProviderService {
 
   async authorizeRequest(
     request: AuthorizeParameters,
-  ): Promise<AuthorizeParametersValid> {
+  ): Promise<AuthorizeParametersValid | ValidationError[]> {
     return await this.authorize.validateRequest(request);
   }
 }

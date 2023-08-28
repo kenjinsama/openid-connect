@@ -3,7 +3,11 @@ import * as ClassTransformer from 'class-transformer';
 import { AuthorizeService } from '../../../src/provider/authorize/authorize.service';
 import { AuthorizeParametersDto } from '../../../src/provider/authorize/dtos/authorize-parameters.dto';
 
-import { configMock, configServiceMock } from '../config/config.service.mock';
+import {
+  configMock,
+  configServiceMock,
+  validationErrorMock,
+} from '../config/config.service.mock';
 import {
   authorizeParametersDto,
   authorizeParametersMock,
@@ -32,6 +36,8 @@ describe('AuthorizeService', () => {
         .mocked(authorizeParametersDto.toPlainObject)
         .mockReturnValue(authorizeParametersMock);
 
+      jest.mocked(authorizeParametersDto.validate).mockResolvedValue([]);
+
       // Wont work without any since it does not recognize the two signatures and pick the wrong one
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       jest.mocked<any>(configServiceMock.get).mockReturnValue(configMock);
@@ -46,9 +52,6 @@ describe('AuthorizeService', () => {
       expect(ClassTransformer.plainToClass).toHaveBeenCalledWith(
         AuthorizeParametersDto,
         authorizeParametersMock,
-        {
-          excludeExtraneousValues: true,
-        },
       );
     });
 
@@ -68,6 +71,19 @@ describe('AuthorizeService', () => {
       // Then
       expect(authorizeParametersDto.validate).toHaveBeenCalledTimes(1);
       expect(authorizeParametersDto.validate).toHaveBeenCalledWith(configMock);
+    });
+
+    it('should return the validation errors if the validation fails', async () => {
+      // Given
+      jest
+        .mocked(authorizeParametersDto.validate)
+        .mockResolvedValueOnce(validationErrorMock);
+
+      // When
+      const result = await service.validateRequest(authorizeParametersMock);
+
+      // Then
+      expect(result).toStrictEqual(validationErrorMock);
     });
 
     it('should return the parsed request', async () => {

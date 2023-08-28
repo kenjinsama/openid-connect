@@ -1,3 +1,4 @@
+import { ValidationError } from 'class-validator';
 import { ConfigService } from '../../../src/provider/config/config.service';
 import { Config } from '../../../src/provider/config/dtos/config.dto';
 
@@ -29,6 +30,34 @@ export const configMock: Config = {
     userinfo: true,
   },
 };
+
+export const validationErrorMock: ValidationError[] = [
+  {
+    target: {
+      property: 'property',
+      property_2: 'property_2',
+    },
+    property: 'property',
+    value: 'value',
+    children: [],
+    constraints: {
+      constraint: 'constraint_message',
+    },
+  },
+  {
+    target: {
+      property: 'property',
+      property_2: 'property_2',
+    },
+    property: 'property_2',
+    value: 'value',
+    children: [],
+    constraints: {
+      constraint_2: 'constraint_message_2',
+      constraint_3: 'constraint_message_3',
+    },
+  },
+];
 
 export const configDtoMock = {
   ...configMock,

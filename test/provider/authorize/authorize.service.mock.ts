@@ -8,15 +8,19 @@ import { configServiceMock } from '../config/config.service.mock';
 
 jest.mock('../../../src/provider/authorize/authorize.service');
 
-export const authorizeParametersMock: AuthorizeParameters = {
+const authorizeParametersMockBase = {
   response_type: 'code',
   client_id: 'client_id',
   redirect_uri: 'https://example.com',
   scope: '  openid   given_name  ',
 };
 
+export const authorizeParametersMock: AuthorizeParameters = {
+  ...authorizeParametersMockBase,
+};
+
 export const authorizeParametersValidMock: AuthorizeParametersValid = {
-  ...authorizeParametersMock,
+  ...authorizeParametersMockBase,
   response_type: ['code'],
   scope: ['openid', 'given_name'],
 };

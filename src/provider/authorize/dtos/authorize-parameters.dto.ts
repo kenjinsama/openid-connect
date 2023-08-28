@@ -11,6 +11,7 @@ import {
   IsUrl,
   Min,
   ValidateIf,
+  ValidationError,
 } from 'class-validator';
 
 import { Dto } from '../../../utils/dto';
@@ -135,14 +136,18 @@ export class AuthorizeParametersDto extends Dto {
     return super.toPlainObject<T>();
   }
 
-  override async validate(config: Config): Promise<void> {
+  override async validate(config: Config): Promise<ValidationError[]> {
     const client = config.clients.find(
       client => client.client_id === this.client_id,
     );
 
     Reflect.defineMetadata('__client', client, this);
 
-    return await super.validate();
+    return await super.validate({
+      whitelist: false,
+      forbidNonWhitelisted: false,
+      forbidUnknownValues: false,
+    });
   }
 
   private static nonceIsMandatory(
@@ -161,10 +166,10 @@ export type AuthorizeParameters = ReplaceSubset<
   {
     response_type: string;
     scope: string;
-    max_age: string;
-    ui_locales: string;
-    claims_locales: string;
-    acr_values: string;
+    max_age?: string;
+    ui_locales?: string;
+    claims_locales?: string;
+    acr_values?: string;
   },
   AuthorizeParametersValid
 >;

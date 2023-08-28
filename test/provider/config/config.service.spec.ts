@@ -2,7 +2,11 @@ import * as ClassTransformer from 'class-transformer';
 
 import { ConfigService } from '../../../src/provider/config/config.service';
 import { ConfigDto } from '../../../src/provider/config/dtos/config.dto';
-import { configDtoMock, configMock } from './config.service.mock';
+import {
+  configDtoMock,
+  configMock,
+  validationErrorMock,
+} from './config.service.mock';
 
 describe('ConfigService', () => {
   let service: ConfigService;
@@ -32,6 +36,10 @@ describe('ConfigService', () => {
   });
 
   describe('setup', () => {
+    beforeEach(() => {
+      jest.spyOn(configDtoMock, 'validate').mockResolvedValue([]);
+    });
+
     it('should validate the config', async () => {
       // When
       await service.setup();
@@ -39,6 +47,19 @@ describe('ConfigService', () => {
       // Then
       expect(configDtoMock.validate).toHaveBeenCalledTimes(1);
       expect(configDtoMock.validate).toHaveBeenCalledWith();
+    });
+
+    it('should throw the validation errors if the validation fails', async () => {
+      // Given
+      jest
+        .spyOn(configDtoMock, 'validate')
+        .mockResolvedValueOnce(validationErrorMock);
+
+      // When
+      const result = service.setup();
+
+      // Then
+      await expect(result).rejects.toEqual(validationErrorMock);
     });
   });
 

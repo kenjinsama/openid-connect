@@ -20,7 +20,7 @@ describe('AuthorizeParametersDto', () => {
 
   describe('validate', () => {
     beforeEach(() => {
-      jest.mocked(Dto.prototype.validate).mockResolvedValue(undefined);
+      jest.mocked(Dto.prototype.validate).mockResolvedValue([]);
       jest.spyOn(Reflect, 'defineMetadata');
     });
 
@@ -53,13 +53,20 @@ describe('AuthorizeParametersDto', () => {
       );
     });
 
-    it('should call the validate method from the parent class', async () => {
+    it('should call the validate method from the parent class and ask to not removes unknown parameters', async () => {
+      // Given
+      const expectedOptions = {
+        forbidNonWhitelisted: false,
+        forbidUnknownValues: false,
+        whitelist: false,
+      };
+
       // When
       await dto.validate(configMock);
 
       // Then
       expect(Dto.prototype.validate).toHaveBeenCalledTimes(1);
-      expect(Dto.prototype.validate).toHaveBeenCalledWith();
+      expect(Dto.prototype.validate).toHaveBeenCalledWith(expectedOptions);
     });
   });
 

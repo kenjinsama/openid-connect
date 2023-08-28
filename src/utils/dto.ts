@@ -1,21 +1,29 @@
 import { instanceToPlain } from 'class-transformer';
-import { validateOrReject } from 'class-validator';
+import { ValidationError, ValidatorOptions, validate } from 'class-validator';
 
 export class Dto {
   // Need this to override the with different parameters on child classes
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async validate(..._args: unknown[]) {
+  async validate(..._args: unknown[]): Promise<ValidationError[]> {
     console.debug(`Validating ${this.constructor.name}...`);
-    try {
-      await validateOrReject(this, {
+
+    const [
+      validationOptions = {
         whitelist: true,
         forbidNonWhitelisted: true,
-      });
-    } catch (errors) {
-      console.debug(JSON.stringify(errors, null, 2));
+      },
+    ] = _args as [ValidatorOptions];
 
-      throw errors;
+    const validationErrors = await validate(this, validationOptions);
+
+    if (validationErrors.length > 0) {
+      console.debug(
+        `Validation errors for ${this.constructor.name}:`,
+        validationErrors,
+      );
     }
+
+    return validationErrors;
   }
 
   toPlainObject<T = unknown>(): T {
