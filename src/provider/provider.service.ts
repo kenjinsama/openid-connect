@@ -18,7 +18,7 @@ export class ProviderService {
   ) {}
 
   @postConstruct()
-  async setup(): Promise<void> {
+  private async setup(): Promise<void> {
     const issuer = await this.config.get('issuer');
 
     console.debug('Initializing issuer:', issuer);

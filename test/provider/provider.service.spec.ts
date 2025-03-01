@@ -28,7 +28,7 @@ describe('ProviderService', () => {
 
     it('should find the issuer', async () => {
       // When
-      await service.setup();
+      await service['setup']();
 
       // Then
       expect(configServiceMock.get).toHaveBeenCalledTimes(1);
