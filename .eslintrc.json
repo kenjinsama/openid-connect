@@ -1,9 +1,4 @@
 {
-  "extends": "./node_modules/gts/",
-  "rules": {
-    "object-curly-spacing": [
-      "error",
-      "always"
-    ]
-  }
+  "root": true,
+  "extends": "./node_modules/gts/"
 }

@@ -21,8 +21,8 @@ export type Plain<T> = Omit<
         ? Array<Plain<E>> // Then we need to Plain<E> too
         : T[K] // Else, E is a primitive, then T[K] is a primitive array and we can just use it as is
       : T[K] extends NonPrimitive<T[K]> // Else if T[K] is any non primitive
-      ? Plain<T[K]> // Then we need to Plain<E> too
-      : T[K]; // Else, T[K] is a primitive, we can just use it as is
+        ? Plain<T[K]> // Then we need to Plain<E> too
+        : T[K]; // Else, T[K] is a primitive, we can just use it as is
   },
   Methods<T> // Exclude all functions from the resulting type
 >;

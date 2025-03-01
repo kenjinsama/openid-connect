@@ -1,5 +1,3 @@
-// This does not need publication as it is for testing only
-// eslint-disable-next-line node/no-unpublished-import
 import type { JestConfigWithTsJest } from 'ts-jest';
 
 const jestConfig: JestConfigWithTsJest = {

@@ -12,5 +12,5 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src/**/*.ts"]
+  "include": ["*.ts", "src/**/*.ts", "test/**/*.ts"]
 }
