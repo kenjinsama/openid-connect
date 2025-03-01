@@ -8,6 +8,7 @@ describe('Dto', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
 
     service = new Dto();
   });

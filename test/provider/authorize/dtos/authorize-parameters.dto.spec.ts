@@ -12,6 +12,7 @@ describe('AuthorizeParametersDto', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
 
     dto = plainToClass(AuthorizeParametersDto, authorizeParametersMock, {
       excludeExtraneousValues: true,

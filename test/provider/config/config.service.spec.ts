@@ -13,6 +13,7 @@ describe('ConfigService', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
 
     jest.spyOn(ClassTransformer, 'plainToClass').mockReturnValue(configDtoMock);
 

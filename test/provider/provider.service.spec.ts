@@ -12,6 +12,7 @@ describe('ProviderService', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
 
     service = new ProviderService(configServiceMock, authorizeServiceMock);
   });

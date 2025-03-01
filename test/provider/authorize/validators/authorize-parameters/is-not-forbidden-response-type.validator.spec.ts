@@ -6,6 +6,7 @@ import {
 describe('IsNotForbiddenResponseType', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
   });
 
   describe('validate', () => {

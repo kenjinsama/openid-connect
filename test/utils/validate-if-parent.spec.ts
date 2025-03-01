@@ -4,6 +4,7 @@ import { Parent, RefParent } from '../../src/utils/validate-if-parent';
 describe('validateIfParent', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
   });
 
   describe('RefParent', () => {

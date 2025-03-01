@@ -12,6 +12,7 @@ describe('IsClientAuthorizedRedirectUri', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
 
     jest.spyOn(Reflect, 'getMetadata').mockReturnValue(clientMock);
   });

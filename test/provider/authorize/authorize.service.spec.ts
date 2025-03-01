@@ -18,6 +18,7 @@ describe('AuthorizeService', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
 
     service = new AuthorizeService(configServiceMock);
   });
@@ -40,7 +41,7 @@ describe('AuthorizeService', () => {
 
       // Wont work without any since it does not recognize the two signatures and pick the wrong one
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      jest.mocked<any>(configServiceMock.get).mockReturnValue(configMock);
+      jest.mocked<any>(configServiceMock.get).mockResolvedValue(configMock);
     });
 
     it('should instantiate the DTO', async () => {

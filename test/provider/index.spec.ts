@@ -16,6 +16,7 @@ describe('OpenIdConnect', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
+    jest.resetAllMocks();
   });
 
   describe('createProvider', () => {
