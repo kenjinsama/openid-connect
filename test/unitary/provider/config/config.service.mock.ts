@@ -1,8 +1,8 @@
 import { ValidationError } from 'class-validator';
-import { ConfigService } from '../../../src/provider/config/config.service';
-import { Config } from '../../../src/provider/config/dtos/config.dto';
+import { ConfigService } from '../../../../src/provider/config/config.service';
+import { Config } from '../../../../src/provider/config/dtos/config.dto';
 
-jest.mock('../../../src/provider/config/config.service');
+jest.mock('../../../../src/provider/config/config.service');
 
 export const configMock: Config = {
   issuer: 'https://issuer',

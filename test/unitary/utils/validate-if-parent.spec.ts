@@ -1,5 +1,5 @@
 import { ValidationError } from 'class-validator';
-import { Parent, RefParent } from '../../src/utils/validate-if-parent';
+import { Parent, RefParent } from '../../../src/utils/validate-if-parent';
 
 describe('validateIfParent', () => {
   beforeEach(() => {

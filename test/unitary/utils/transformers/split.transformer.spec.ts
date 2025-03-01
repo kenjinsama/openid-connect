@@ -1,4 +1,4 @@
-import { Split } from '../../../src/utils/transformers/split.transformer';
+import { Split } from '../../../../src/utils/transformers/split.transformer';
 
 describe('SplitTransformer', () => {
   it('should return a function', () => {

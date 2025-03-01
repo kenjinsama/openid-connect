@@ -1,11 +1,11 @@
 import { plainToClass } from 'class-transformer';
 
-import { AuthorizeParametersDto } from '../../../../src/provider/authorize/dtos/authorize-parameters.dto';
-import { Dto } from '../../../../src/utils/dto';
+import { AuthorizeParametersDto } from '../../../../../src/provider/authorize/dtos/authorize-parameters.dto';
+import { Dto } from '../../../../../src/utils/dto';
 import { configMock } from '../../config/config.service.mock';
 import { authorizeParametersMock } from '../authorize.service.mock';
 
-jest.mock('../../../../src/utils/dto');
+jest.mock('../../../../../src/utils/dto');
 
 describe('AuthorizeParametersDto', () => {
   let dto: AuthorizeParametersDto;

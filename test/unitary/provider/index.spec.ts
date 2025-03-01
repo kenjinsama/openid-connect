@@ -1,13 +1,13 @@
 import { Container } from 'inversify';
 
-import { createProvider } from '../../src/provider/index';
-import { init } from '../../src/provider/inversify.config';
-import { TYPES } from '../../src/provider/types';
+import { createProvider } from '../../../src/provider/index';
+import { init } from '../../../src/provider/inversify.config';
+import { TYPES } from '../../../src/provider/types';
 
 import { configMock } from './config/config.service.mock';
 import { providerServiceMock } from './provider.service.mock';
 
-jest.mock('../../src/provider/inversify.config');
+jest.mock('../../../src/provider/inversify.config');
 
 describe('OpenIdConnect', () => {
   const containerMock = {

@@ -1,4 +1,4 @@
-import { ProviderService } from '../../src/provider/provider.service';
+import { ProviderService } from '../../../src/provider/provider.service';
 
 import {
   authorizeParametersMock,

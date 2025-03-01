@@ -1,6 +1,6 @@
 import * as ClassTransformer from 'class-transformer';
 import * as ClassValidator from 'class-validator';
-import { Dto } from '../../src/utils/dto';
+import { Dto } from '../../../src/utils/dto';
 import { validationErrorMock } from '../provider/config/config.service.mock';
 
 describe('Dto', () => {

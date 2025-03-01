@@ -1,7 +1,7 @@
 import {
   defaultMessage,
   validate,
-} from '../../../../../src/provider/authorize/validators/authorize-parameters/is-not-forbidden-response-type.validator';
+} from '../../../../../../src/provider/authorize/validators/authorize-parameters/is-not-forbidden-response-type.validator';
 
 describe('IsNotForbiddenResponseType', () => {
   beforeEach(() => {

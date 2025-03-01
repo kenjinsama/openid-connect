@@ -1,7 +1,7 @@
 import * as ClassTransformer from 'class-transformer';
 
-import { ConfigService } from '../../../src/provider/config/config.service';
-import { ConfigDto } from '../../../src/provider/config/dtos/config.dto';
+import { ConfigService } from '../../../../src/provider/config/config.service';
+import { ConfigDto } from '../../../../src/provider/config/dtos/config.dto';
 import {
   configDtoMock,
   configMock,

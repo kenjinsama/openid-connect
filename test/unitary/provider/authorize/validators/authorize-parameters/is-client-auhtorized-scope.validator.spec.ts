@@ -1,9 +1,9 @@
-import { AuthorizeParametersDto } from '../../../../../src/provider/authorize/dtos/authorize-parameters.dto';
+import { AuthorizeParametersDto } from '../../../../../../src/provider/authorize/dtos/authorize-parameters.dto';
 import {
   defaultMessage,
   validate,
-} from '../../../../../src/provider/authorize/validators/authorize-parameters/is-client-authorized-scope.validator';
-import { ValidationArgumentsGeneric } from '../../../../../src/utils/types/validation-arguments-generic.type';
+} from '../../../../../../src/provider/authorize/validators/authorize-parameters/is-client-authorized-scope.validator';
+import { ValidationArgumentsGeneric } from '../../../../../../src/utils/types/validation-arguments-generic.type';
 import { configMock } from '../../../config/config.service.mock';
 
 describe('IsClientAuthorizedScope', () => {

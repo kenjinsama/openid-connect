@@ -1,4 +1,4 @@
-import { ParseInt } from '../../../src/utils/transformers/parse-int.transformer';
+import { ParseInt } from '../../../../src/utils/transformers/parse-int.transformer';
 
 describe('ParseInt', () => {
   it('should return a function', () => {
